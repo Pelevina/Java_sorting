@@ -13,7 +13,7 @@ void main() {
         System.out.print("Enter the way of data input: ");
         String readerName = in.nextLine();
         if (readerMap.containsKey(readerName)) {
-
+            List<TableTennisPlayer> players = readerMap.get(readerName).readInput();
         }
         else {
             System.out.println("Wrong way of input");
