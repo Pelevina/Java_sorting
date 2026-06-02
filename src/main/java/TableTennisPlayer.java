@@ -1,7 +1,13 @@
 public class TableTennisPlayer {
-    private String name;
-    private int totalGames;
-    private int wonGames;
+    private final String name;
+    private final int totalGames;
+    private final int wonGames;
+
+    private TableTennisPlayer(Builder builder) {
+        this.name = builder.name;
+        this.totalGames = builder.totalGames;
+        this.wonGames = builder.wonGames;
+    }
 
     public String getName() {
         return name;
@@ -15,35 +21,40 @@ public class TableTennisPlayer {
         return wonGames;
     }
 
-    public class Builder {
-        private TableTennisPlayer player;
+    public static class Builder {
+        private String name;
+        private int totalGames;
+        private int wonGames;
 
         public Builder setName(String name) throws InvalidDataException {
             if (name != null && !name.isBlank()) {
-                player.name = name;
+                this.name = name;
                 return this;
+            } else {
+                throw new InvalidDataException("Non valid name");
             }
-            else throw new InvalidDataException("Non valid name");
         }
 
         public Builder setTotalGames(int totalGames) throws InvalidDataException {
             if (totalGames >= 0) {
-                player.totalGames = totalGames;
+                this.totalGames = totalGames;
                 return this;
+            } else {
+                throw new InvalidDataException("Non valid total games");
             }
-            else throw new InvalidDataException("Non valid total games");
         }
 
         public Builder setWonGames(int wonGames) throws InvalidDataException {
             if (wonGames >= 0 && wonGames <= totalGames) {
-                player.wonGames = wonGames;
+                this.wonGames = wonGames;
                 return this;
+            } else {
+                throw new InvalidDataException("Non valid won games");
             }
-            else throw new InvalidDataException("Non valid won games");
         }
 
-        public TableTennisPlayer getPlayer() {
-            return player;
+        public TableTennisPlayer build() {
+            return new TableTennisPlayer(this);
         }
     }
 }
