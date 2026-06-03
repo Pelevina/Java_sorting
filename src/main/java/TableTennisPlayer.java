@@ -57,4 +57,8 @@ public class TableTennisPlayer {
             return new TableTennisPlayer(this);
         }
     }
+    @Override
+    public String toString() {
+        return String.format("[%s, %d, %d]", getName(), getTotalGames(), getWonGames());
+    }
 }
