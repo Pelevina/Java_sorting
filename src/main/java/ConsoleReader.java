@@ -10,4 +10,9 @@ public class ConsoleReader implements Reader{
     public String getReaderName() {
         return "Console input";
     }
+
+    @Override
+    public String getCode() {
+        return "console";
+    }
 }

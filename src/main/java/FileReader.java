@@ -10,4 +10,9 @@ public class FileReader implements Reader{
     public String getReaderName() {
         return "File input";
     }
+
+    @Override
+    public String getCode() {
+        return "file";
+    }
 }
