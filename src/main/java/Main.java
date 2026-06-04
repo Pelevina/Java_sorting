@@ -4,14 +4,6 @@ public class Main {
     private static final Map<String, Reader> readerMap = new HashMap<>();
 
     public static void main(String[] args) {
-        Reader consoleReader = new ConsoleReader();
-        Reader randomReader = new RandomReader();
-        Reader fileReader = new FileReader();
-
-        readerMap.put(consoleReader.getCode(), consoleReader);
-        readerMap.put(randomReader.getCode(), randomReader);
-        readerMap.put(fileReader.getCode(), fileReader);
-
         boolean run = true;
 
         while (run) {
@@ -29,6 +21,14 @@ public class Main {
         in.nextLine(); // предотвращаем считывание избыточного переноса строки при следующем вводе данных
 
         if (lengthCollection > 0) {
+            Reader consoleReader = new ConsoleReader(lengthCollection);
+            Reader randomReader = new RandomReader();
+            Reader fileReader = new FileReader();
+
+            readerMap.put(consoleReader.getCode(), consoleReader);
+            readerMap.put(randomReader.getCode(), randomReader);
+            readerMap.put(fileReader.getCode(), fileReader);
+
             String input = "", readerName = "";
 
             List<TableTennisPlayer> players = List.of();
@@ -59,6 +59,7 @@ public class Main {
                         } else {
                             System.out.println("Empty player list");
                         }
+
                         break;
                     default:
                         if (readerMap.containsKey(input)) {
