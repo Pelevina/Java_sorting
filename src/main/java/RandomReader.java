@@ -10,4 +10,9 @@ public class RandomReader implements Reader{
     public String getReaderName() {
         return "Random input";
     }
+
+    @Override
+    public String getCode() {
+        return "random";
+    }
 }
