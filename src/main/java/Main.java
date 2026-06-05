@@ -22,7 +22,7 @@ public class Main {
 
         if (lengthCollection > 0) {
             Reader consoleReader = new ConsoleReader(lengthCollection);
-            Reader randomReader = new RandomReader();
+            Reader randomReader = new RandomReader(lengthCollection);//добавила lengthCollection,чтобы RandomReader знал сколько игроков генерировать.
             Reader fileReader = new FileReader();
 
             readerMap.put(consoleReader.getCode(), consoleReader);
