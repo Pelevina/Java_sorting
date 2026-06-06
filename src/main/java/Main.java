@@ -49,13 +49,8 @@ public class Main {
                     case "s":
                     case "sort":
                         if(!players.isEmpty()) {
-                            Sorter sorter = new Sorter(players);
-
-                            Comparator<TableTennisPlayer> comparator = Comparator.comparing(TableTennisPlayer::getWonGames)
-                                    .thenComparing(TableTennisPlayer::getTotalGames).reversed()
-                                    .thenComparing(TableTennisPlayer::getName);
-
-                            players = sorter.sortPlayers(comparator);
+                        	List<TableTennisPlayer> sortedPlayers = MergeSorter.mergeSort(players, new CompositComparator());
+                        	System.out.println(sortedPlayers);
                         } else {
                             System.out.println("Empty player list");
                         }
@@ -65,6 +60,7 @@ public class Main {
                         if (readerMap.containsKey(input)) {
                             readerName = input;
                             players = readerMap.get(readerName).readInput();
+                            System.out.println(players);
                         } else if (!input.isBlank()) {
                             System.out.println("Wrong command");
                         }
