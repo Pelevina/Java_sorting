@@ -60,6 +60,11 @@ public class Main {
                         if (readerMap.containsKey(input)) {
                             readerName = input;
                             players = readerMap.get(readerName).readInput();
+                            if (players.size() > lengthCollection) {
+                                players = players.stream()
+                                        .limit(lengthCollection)
+                                        .toList();
+                            }
                             System.out.println(players);
                         } else if (!input.isBlank()) {
                             System.out.println("Wrong command");
