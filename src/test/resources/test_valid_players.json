@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Игорь",
+    "totalGames": 50,
+    "wonGames": 42
+  },
+  {
+    "name": "Алексей",
+    "totalGames": 30,
+    "wonGames": 15
+  }
+]
