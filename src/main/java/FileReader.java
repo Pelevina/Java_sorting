@@ -7,17 +7,24 @@ import java.util.List;
 import java.util.Objects;
 
 public class FileReader implements Reader {
-    private static final String FILE_NAME = "players.json";
+    private final String fileName;
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    public FileReader() {
+        this("players.json");
+    }
+
+    public FileReader(String fileName) {
+        this.fileName = fileName;
+    }
 
     @Override
     public List<TableTennisPlayer> readInput() {
-
-        System.out.println("[INFO] Start reading file: " + FILE_NAME);
+        System.out.println("[INFO] Start reading file: " + this.fileName);
         try (
-                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME)) {
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream(this.fileName)) {
             if (inputStream == null) {
-                System.err.println("[ERROR] File " + FILE_NAME + " not found in resources!");
+                System.err.println("[ERROR] File " + this.fileName + " not found in resources!");
                 return List.of();
             }
             List<TableTennisPlayerDto> dtos = objectMapper.readValue(
@@ -38,6 +45,7 @@ public class FileReader implements Reader {
             return List.of();
         }
     }
+
     private TableTennisPlayer mapDtoToPlayer(TableTennisPlayerDto dto) {
         try {
             return new TableTennisPlayer.Builder()
@@ -62,4 +70,3 @@ public class FileReader implements Reader {
         return "file";
     }
 }
-

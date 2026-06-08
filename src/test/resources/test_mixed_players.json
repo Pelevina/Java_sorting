@@ -1,0 +1,17 @@
+[
+  {
+    "name": "   ",
+    "totalGames": 10,
+    "wonGames": 5
+  },
+  {
+    "name": "Елена",
+    "totalGames": -5,
+    "wonGames": 3
+  },
+  {
+    "name": "Алексей",
+    "totalGames": 30,
+    "wonGames": 15
+  }
+]
