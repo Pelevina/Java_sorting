@@ -34,7 +34,9 @@ public class ConsoleReader implements Reader{
                         .setTotalGames(totalGames)
                         .setWonGames(wonGames)
                         .build());
-            } catch (InvalidDataException e) {
+            }
+            catch (InvalidDataException e) {
+                i--;
                 System.out.println("Data wrong: " + e.getMessage());
             }
         }
