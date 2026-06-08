@@ -37,8 +37,8 @@ public class MergeSorterDemo {
 
         List<TableTennisPlayer> sortedList = MergeSorter.mergeSort(list, new CompositComparator());
 
-        IO.println(list);
-        IO.println("\n\n\n");
-        IO.println(sortedList);
+        System.out.println(list);
+        System.out.println("\n\n\n");
+        System.out.println(sortedList);
     }
 }

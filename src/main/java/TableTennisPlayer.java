@@ -23,40 +23,56 @@ public class TableTennisPlayer {
 
     public static class Builder {
         private String name;
-        private int totalGames;
-        private int wonGames;
+        private Integer totalGames;
+        private Integer wonGames;
 
-        public Builder setName(String name) throws InvalidDataException {
-            if (name != null && !name.isBlank()) {
-                this.name = name;
-                return this;
-            } else {
-                throw new InvalidDataException("Non valid name");
-            }
+        public Builder setName(String name) {
+            this.name = name != null ? name.trim() : null;
+            return this;
         }
 
-        public Builder setTotalGames(int totalGames) throws InvalidDataException {
-            if (totalGames >= 0) {
-                this.totalGames = totalGames;
-                return this;
-            } else {
-                throw new InvalidDataException("Non valid total games");
-            }
+        public Builder setTotalGames(Integer totalGames) {
+            this.totalGames = totalGames;
+            return this;
         }
 
-        public Builder setWonGames(int wonGames) throws InvalidDataException {
-            if (wonGames >= 0 && wonGames <= totalGames) {
-                this.wonGames = wonGames;
-                return this;
-            } else {
-                throw new InvalidDataException("Non valid won games");
-            }
+        public Builder setWonGames(Integer wonGames) {
+            this.wonGames = wonGames;
+            return this;
         }
 
-        public TableTennisPlayer build() {
+        public TableTennisPlayer build() throws InvalidDataException {
+            if (name == null || name.isEmpty()) {
+                throw new InvalidDataException("Player name cannot be null or empty.");
+            }
+
+            if (totalGames == null) {
+                throw new InvalidDataException("Total games count is not specified.");
+            }
+
+            if (wonGames == null) {
+                throw new InvalidDataException("Won games count is not specified.");
+            }
+
+            if (totalGames < 0) {
+                throw new InvalidDataException("Total games count cannot be negative.");
+            }
+
+            if (wonGames < 0) {
+                throw new InvalidDataException("Won games count cannot be negative.");
+            }
+
+            if (wonGames > totalGames) {
+                throw new InvalidDataException(
+                        "Won games count (%d) cannot exceed total games count (%d)."
+                                .formatted(wonGames, totalGames)
+                );
+            }
+
             return new TableTennisPlayer(this);
         }
     }
+
     @Override
     public String toString() {
         return String.format("[%s, %d, %d]", getName(), getTotalGames(), getWonGames());
