@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ConsoleReaderTest {
 
-    private final ByteArrayInputStream originalIn = System.in;
+    private final ByteArrayInputStream originalIn = (ByteArrayInputStream) System.in;
 
     @BeforeEach
     void setUp() {
