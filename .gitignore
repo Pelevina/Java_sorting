@@ -2,9 +2,9 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-.idea
-target
-Java_sorting.iml
+.idea/
+*.iml
+target/
 .kotlin
 
 ### Eclipse ###
