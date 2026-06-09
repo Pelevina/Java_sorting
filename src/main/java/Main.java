@@ -38,7 +38,7 @@ public class Main {
                     case "?":
                     case "h":
                     case "help":
-                        printHelp(!readerName.isBlank());
+                        printHelp(readerName.isBlank());
                         break;
                     case "q":
                     case "quit":
