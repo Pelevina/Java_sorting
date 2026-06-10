@@ -1,24 +1,29 @@
-void main() {
-    testCorrectSize();
-    testValidWonGames();
-    System.out.println("Все тесты RandomReaderTest пройдены!");
-}
+public class RandomReaderTest {
 
-private static void testCorrectSize() {
-    RandomReader reader = new RandomReader(5);
-    int actual = reader.readInput().size();
-    if (actual != 5) {
-        throw new AssertionError("testCorrectSize провален: ожидалось 5, получилось " + actual);
+    public static void main(String[] args) {
+        testCorrectSize();
+        testValidWonGames();
+        System.out.println("Все тесты RandomReaderTest пройдены!");
     }
-    System.out.println("testCorrectSize OK");
-}
 
-private static void testValidWonGames() {
-    RandomReader reader = new RandomReader(20);
-    for (TableTennisPlayer player : reader.readInput()) {
-        if (player.getWonGames() < 0 || player.getWonGames() > player.getTotalGames()) {
-            throw new AssertionError("testValidWonGames провален: wonGames = " + player.getWonGames());
+    // Проверяем что количество игроков совпадает с запрошенным
+    private static void testCorrectSize() {
+        RandomReader reader = new RandomReader(5);
+        int actual = reader.readInput().size();
+        if (actual != 5) {
+            throw new AssertionError("testCorrectSize провален: ожидалось 5, получилось " + actual);
         }
+        System.out.println("testCorrectSize OK");
     }
-    System.out.println("testValidWonGames OK");
+
+    // Проверяем что wonGames не больше totalGames и не меньше 0
+    private static void testValidWonGames() {
+        RandomReader reader = new RandomReader(20);
+        for (TableTennisPlayer player : reader.readInput()) {
+            if (player.getWonGames() < 0 || player.getWonGames() > player.getTotalGames()) {
+                throw new AssertionError("testValidWonGames провален: wonGames = " + player.getWonGames());
+            }
+        }
+        System.out.println("testValidWonGames OK");
+    }
 }
